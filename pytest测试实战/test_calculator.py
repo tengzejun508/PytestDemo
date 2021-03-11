@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 import pytest
 from pytest测试实战.calculator import Calaculator
 
@@ -11,10 +13,13 @@ class TestCalculator():
     def teardown_class(self):
         print("结束计算")
 
-
-
-    #参数化
-    @pytest.mark.parametrize("a, b, expect", [(1,2,3),(3,5,8),(1000,2000,3000)], ids=["测试数据1","测试数据2","测试数据3"])
+    # 参数化
+    @pytest.mark.parametrize("a, b, expect", [(1, 2, 3), (3, 5, 8), (1000, 2000, 3000)],
+                             ids=["测试数据1", "测试数据2", "测试数据3"])
     def test_add(self, a, b, expect):
-
         assert self.cal.add(a, b) == expect
+
+    @pytest.mark.parametrize("a, b, expect", [(1, 2, 1/2), (8, 4, 2), (1000, 2000, 3000)],
+                             ids=["测试数据1", "测试数据2", "测试数据3"])
+    def test_div(self, a, b, expect):
+        assert self.cal.divide(a, b) == expect
