@@ -3,6 +3,7 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 
 class TestActionChains():
@@ -49,6 +50,8 @@ class TestActionChains():
         action.perform()
         sleep(3)
 
+    # 拖拽三种实现方式
+    @pytest.mark.skip
     def test_case_dragdrop(self):
         self.driver.get("http://sahitest.com/demo/dragDropMooTools.htm")
         drag_element = self.driver.find_element_by_id("dragger")
@@ -58,4 +61,17 @@ class TestActionChains():
         #action.click_and_hold(drag_element).release(drop_element).perform()
         action.click_and_hold(drag_element).move_to_element(drop_element).release().perform()
         sleep(3)
+
+    #键盘键的使用
+    def test_keys(self):
+        self.driver.get("http://sahitest.com/demo/label.htm")
+        ele = self.driver.find_element_by_xpath("/html/body/label[1]/input")
+        ele.click()
+        action = ActionChains(self.driver)
+        action.send_keys("username")
+        action.send_keys(Keys.SPACE).pause(1)
+        action.send_keys("tom")
+        action.send_keys(Keys.BACK_SPACE).perform()
+        sleep(3)
+
 

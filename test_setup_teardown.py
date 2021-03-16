@@ -26,7 +26,7 @@ class TestClass():
 
 
     def teardown_class(self):
-        print("setup:在类里面所有的测试用例借宿的时候执行")
+        print("setup:在类里面所有的测试用例结束的时候执行")
 
     def setup_method(self):
         print("setup:在每个测试用例开始的时候执行")

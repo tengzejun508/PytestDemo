@@ -22,3 +22,31 @@
     driver = webdriver.Chrome(chrome_options=option)
     driver.maximize_window()
     driver.get("https://www.baidu.com")
+    
+#selenium.common.exceptions.WebDriverException Message :unknown command Cannot call non W3C standard command while in W3C mode
+#解决方法:
+
+    Python
+    from selenium import webdriver
+    opt = webdriver.ChromeOptions()
+    opt.add_experimental_option('w3c',  False)
+    driver = webdriver.Chrome(chrome_options=opt)
+    
+    
+    
+    java
+    {
+      "sessionId": "af4656c27fb94485b7872e1fc616923a",
+      "status": "ok",
+      "value": {
+        "browserName": "chrome",
+        ...
+      }
+    }
+
+#复用已有浏览器（调试）
+#1、需要退出当前所有谷歌浏览器
+#2、找到chrome的启动路径
+#3、配置环境变量
+#4、启动命令 windows： chrome --remote-debugging-port=9222(C:\Program Files (x86)\Google\Chrome\Application>chrome.exe --remote-debugging-port=9222)
+#          mac：Google、 Chrome --remote-debugging-port=9222
