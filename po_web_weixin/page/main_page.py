@@ -11,4 +11,5 @@ class MainPage(BasePage):
         return AddMember(self.driver)
 
     def goto_contack(self):
+        self.driver.find_element_by_id("menu_contacts").click()
         return Contact(self.driver)

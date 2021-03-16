@@ -11,10 +11,10 @@ class TestAddMember():
         """
         #1、跳转添加成员页面 2、添加成员 3、自动跳转到通讯录页面
         re = self.main.goto_add_member().add_member().get_member()
-        assert "xxx" in re
+        assert "tengzejun2" in re
 
     def test_add_member_by_contact(self):
         """通过通讯录页面添加成员
         :return:
         """
-        self.main.goto_contack()
+        self.main.goto_contack().add_member().add_member().get_member()

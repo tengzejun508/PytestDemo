@@ -4,7 +4,9 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 
 
 class BasePage():
-    def __init__(self, base_driver:WebDriver=None):
+    def __init__(self, base_driver=None):
+        #注解， 不是赋值操作，用作ide的类型提示
+        base_driver: WebDriver
         if base_driver is None:
             self.option = webdriver.ChromeOptions()
             # 关闭“chrome正受到自动测试软件的控制”
