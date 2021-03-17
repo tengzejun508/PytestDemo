@@ -18,3 +18,7 @@ class TestAddMember():
         :return:
         """
         self.main.goto_contack().add_member().add_member().get_member()
+
+    def test_add_member_fail(self):
+        errmessae = self.main.goto_add_member().add_member_fail()
+        assert errmessae == '该帐号已被“tengzejun3”占有'

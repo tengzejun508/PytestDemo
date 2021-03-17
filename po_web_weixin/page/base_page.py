@@ -36,5 +36,18 @@ class BasePage():
         # 隐式等待时间
         self.driver.implicitly_wait(5)
 
+    def find(self, by, value=None):
+        if value is None:
+            return self.driver.find_element(*by)
+        else:
+            return  self.driver.find_element(by=by, value=value)
+
+    def finds(self, by, value=None):
+        if value is None:
+            return self.driver.find_elements(*by)
+        else:
+            return  self.driver.find_elements(by=by, value=value)
+
+
 
 
