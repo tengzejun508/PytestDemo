@@ -19,15 +19,30 @@ class AddMember(BasePage):
         self.driver.find_element(*self._location_acctid).send_keys("2021031600004")
         self.driver.find_element(*self._location_phone).send_keys("13500000004")
         self.driver.find_element(*self._location_save).click()
-        return  Contact(self.driver)
+        return Contact(self.driver)
 
-    def add_member_fail(self):
+    def add_member_fail(self, acctid, phone):
+
+        messagelist = []
         self.driver.find_element(*self._location_username).send_keys("tengzejun3")
-        self.driver.find_element(*self._location_acctid).send_keys("2021031600004")
-        self.driver.find_element(*self._location_phone).send_keys("13500000004")
+        self.driver.find_element(*self._location_acctid).send_keys(acctid)
+        self.driver.find_element(*self._location_phone).send_keys(phone)
         self.driver.find_element(*self._location_save).click()
+        print("aaaaaaaaaaaa")
         # 显示等待
-        WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located((By.XPATH, "//*[@id='js_contacts73']/div/div[2]/div/div[4]/div/form/div[2]/div[1]/div[2]/div[2]/div")))
-        error_message = self.driver.find_element(By.XPATH, "//*[@id='js_contacts73']/div/div[2]/div/div[4]/div/form/div[2]/div[1]/div[2]/div[2]/div").text
-        print(error_message)
-        return error_message
+        sleep(5)
+        #WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located((By.XPATH, "//*[@id='js_contacts73']/div/div[2]/div/div[4]/div/form/div[2]/div[1]/div[2]/div[2]/div")))
+        # sleep(5)
+        error_message = self.driver.find_element(By.XPATH,"//*[@id='js_contacts73']/div/div[2]/div/div[4]/div/form/div[2]/div[1]/div[2]/div[2]/div").text
+        messagelist.append(error_message)
+
+        # WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(
+        #     (By.CSS_SELECTOR, ".member_edit_item_right .ww_inputWithTips_WithErr.ww_inputWithTips_tips")))
+        sleep(5)
+        error_message_phone = self.driver.find_element(By.XPATH, "//*[@id='js_contacts73']/div/div[2]/div/div[4]/div/form/div[2]/div[2]/div[1]/div/div[2]").text
+        messagelist.append(error_message_phone)
+
+        return messagelist
+
+
+
