@@ -16,18 +16,18 @@ class Contact():
             "corpid": corpid,
             "corpsecret": corpsecret
         }
-        r = requests.get(" https://qyapi.weixin.qq.com/cgi-bin/gettoken")
-        access_token = r.json()
+        r = requests.get(" https://qyapi.weixin.qq.com/cgi-bin/gettoken", params=parm, verify=False)
+        access_token = r
         return access_token
 
     def find_member(self):
-        getuserurl = f"https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token={self.getToken()}&userid=2021031600001"
-        r = requests.get(getuserurl)
+        getuserurl = f"https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token={self.getToken()}&userid=zhangsan11"
+        r = requests.get(getuserurl, verify=False)
         return r.json()
 
     def delete_member(self):
-        delete_url = 'https://qyapi.weixin.qq.com/cgi-bin/user/delete?access_token=ACCESS_TOKEN&userid=USERID'
-        r = requests.get(delete_url)
+        delete_url = f'https://qyapi.weixin.qq.com/cgi-bin/user/delete?access_token={self.getToken()}&userid=zhangsan11'
+        r = requests.get(delete_url, verify=False)
         return r.json()
 
     def update_member(self):
@@ -37,13 +37,13 @@ class Contact():
             "name": "李四",
             "mobile": "13800000000"
         }
-        r = requests.post(url=update_member_url, json=data)
+        r = requests.post(url=update_member_url, json=data, verify=False)
         return r.json()
 
     def create_member(self):
-        create_member_url = "https://qyapi.weixin.qq.com/cgi-bin/user/create?access_token=ACCESS_TOKEN"
+        create_member_url = f"https://qyapi.weixin.qq.com/cgi-bin/user/create?access_token={self.getToken()}"
         data = {
-            "userid": "zhangsan",
+            "userid": "zhangsan11",
             "name": "张三",
             "alias": "jackzhang",
             "mobile": "+86 13800000000",
@@ -109,4 +109,4 @@ class Contact():
                 ]
             }
         }
-        r = requests.post(url=create_member_url, json=data)
+        r = requests.post(url=create_member_url, json=data, verify=False)
