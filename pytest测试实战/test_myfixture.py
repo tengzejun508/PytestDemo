@@ -1,5 +1,5 @@
 import pytest
-
+# -- coding: utf-8 --
 
 class Test_Fixture1():
 

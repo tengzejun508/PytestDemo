@@ -1,5 +1,5 @@
 import pytest
-
+# -- coding: utf-8 --
 
 @pytest.fixture(scope="session", params=["******参数1******", "******参数2******"])
 def myfixture(request):
